@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &115397990
 Transform:
   m_ObjectHideFlags: 0
@@ -165,6 +165,8 @@ GameObject:
   - component: {fileID: 329763065}
   - component: {fileID: 329763064}
   - component: {fileID: 329763066}
+  - component: {fileID: 329763067}
+  - component: {fileID: 329763068}
   m_Layer: 0
   m_Name: test
   m_TagString: Untagged
@@ -185,10 +187,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveManager: {fileID: 0}
-  sr: {fileID: 7539585501430851423, guid: 0f43c71be5f1a1745ba4551556a18ef5, type: 3}
-  BgSetting: {fileID: 0}
+  gridBgImage: {fileID: 0}
+  rendomSpawnNumber: {fileID: 0}
   row: 3
   col: 3
+  cellSize: 10
 --- !u!4 &329763065
 Transform:
   m_ObjectHideFlags: 0
@@ -215,6 +218,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3017244648e5e7e4b9c67c8a50d646ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GMgrid: {fileID: 0}
+--- !u!114 &329763067
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329763063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 644f551e1a0b94b4aaa3f16f8f6c7876, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGimage: {fileID: 7539585501430851423, guid: 0f43c71be5f1a1745ba4551556a18ef5, type: 3}
+  GMgrid: {fileID: 0}
+  row: 0
+  col: 0
+--- !u!114 &329763068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 329763063}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9632e05d7a3ffbb418cc0649bff1f36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GMgrid: {fileID: 0}
 --- !u!1 &591788015
 GameObject:
   m_ObjectHideFlags: 0

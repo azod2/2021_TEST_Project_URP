@@ -1,21 +1,23 @@
 using System;
 using UnityEngine;
 using CodeMonkey.Utils;
+using UnityEngine.Serialization;
 
 namespace Grid_System.Scripts
 {
     public class MoveManager : MonoBehaviour
     {
   
-        [SerializeField]private GameManager grid;
-        private GameManager localgrid;
+        [SerializeField]private GameManager GMgrid;
         private int[,] gridArray;
 
         private void Start()
         {
-            grid = GetComponent<GameManager>();
-            gridArray = grid.managerGrid.gridArray;
+            GMgrid = GetComponent<GameManager>();
+            gridArray = GMgrid.grid.gridArray;  //縮短要打的字&&方便日後修改
+
         }
+
 
         public void MoveDown()
                 {
@@ -25,17 +27,18 @@ namespace Grid_System.Scripts
                         {
                             if ((j+1) < gridArray.GetLength(1))
                             {
-                                if (grid.managerGrid.GetValue(i,j+1)==grid.managerGrid.GetValue(i,j))
+                                //判斷要過去的方向的數字是否跟當前格子的數字一樣，如果一樣就相加，不一樣就不動
+                                if (GMgrid.grid.GetValue(i,j+1)==GMgrid.grid.GetValue(i,j))
                                 {
-                                    grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i,j+1)+grid.managerGrid.GetValue(i,j));
-                                    grid.managerGrid.SetValue(i,j+1,0);
+                                    GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i,j+1)+GMgrid.grid.GetValue(i,j));
+                                    GMgrid.grid.SetValue(i,j+1,0);
                                 }
-                                else if(grid.managerGrid.GetValue(i,j+1)!=grid.managerGrid.GetValue(i,j))
+                                else if(GMgrid.grid.GetValue(i,j+1)!=GMgrid.grid.GetValue(i,j))
                                 {
-                                    if(grid.managerGrid.GetValue(i,j)==0)
+                                    if(GMgrid.grid.GetValue(i,j)==0)
                                     {
-                                        grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i,j+1));
-                                        grid.managerGrid.SetValue(i,j+1,0);
+                                        GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i,j+1));
+                                        GMgrid.grid.SetValue(i,j+1,0);
                                     }
                                     else
                                     {
@@ -50,23 +53,23 @@ namespace Grid_System.Scripts
             
                 public void MoveUp()
                 {
-                    for (int i = 0; i < grid.managerGrid.gridArray.GetLength(0); i++)
+                    for (int i = 0; i < GMgrid.grid.gridArray.GetLength(0); i++)
                     {
-                        for (int j = grid.managerGrid.gridArray.GetLength(1); j > 0; j--)
+                        for (int j = GMgrid.grid.gridArray.GetLength(1); j > 0; j--)
                         {
                             if ((j-1) >= 0)
                             {
-                                if (grid.managerGrid.GetValue(i,j)==grid.managerGrid.GetValue(i,j-1))
+                                if (GMgrid.grid.GetValue(i,j)==GMgrid.grid.GetValue(i,j-1))
                                 {
-                                    grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i,j)+grid.managerGrid.GetValue(i,j-1));
-                                    grid.managerGrid.SetValue(i,j-1,0);
+                                    GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i,j)+GMgrid.grid.GetValue(i,j-1));
+                                    GMgrid.grid.SetValue(i,j-1,0);
                                 }
-                                else if(grid.managerGrid.GetValue(i,j)!=grid.managerGrid.GetValue(i,j-1))
+                                else if(GMgrid.grid.GetValue(i,j)!=GMgrid.grid.GetValue(i,j-1))
                                 {
-                                    if(grid.managerGrid.GetValue(i,j)==0 && j != grid.managerGrid.gridArray.GetLength(1))
+                                    if(GMgrid.grid.GetValue(i,j)==0 && j != GMgrid.grid.gridArray.GetLength(1))
                                     {
-                                        grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i,j-1));
-                                        grid.managerGrid.SetValue(i,j-1,0);
+                                        GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i,j-1));
+                                        GMgrid.grid.SetValue(i,j-1,0);
                                     }
                                     else
                                     {
@@ -81,23 +84,23 @@ namespace Grid_System.Scripts
         
                 public void MoveRight()
                 {
-                    for (int i = grid.managerGrid.gridArray.GetLength(0); i > 0; i--)
+                    for (int i = GMgrid.grid.gridArray.GetLength(0); i > 0; i--)
                     {
-                        for (int j = 0; j < grid.managerGrid.gridArray.GetLength(1); j++)
+                        for (int j = 0; j < GMgrid.grid.gridArray.GetLength(1); j++)
                         {
                             if ((i-1)>=0)
                             {
-                                if (grid.managerGrid.GetValue(i,j) == grid.managerGrid.GetValue(i-1,j))
+                                if (GMgrid.grid.GetValue(i,j) == GMgrid.grid.GetValue(i-1,j))
                                 {
-                                    grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i,j) + grid.managerGrid.GetValue(i-1,j));
-                                    grid.managerGrid.SetValue(i-1,j,0);
+                                    GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i,j) + GMgrid.grid.GetValue(i-1,j));
+                                    GMgrid.grid.SetValue(i-1,j,0);
                                 }
-                                else if(grid.managerGrid.GetValue(i,j) != grid.managerGrid.GetValue(i-1,j))
+                                else if(GMgrid.grid.GetValue(i,j) != GMgrid.grid.GetValue(i-1,j))
                                 {
-                                    if (grid.managerGrid.GetValue(i,j) == 0 && i != grid.managerGrid.gridArray.GetLength(0))
+                                    if (GMgrid.grid.GetValue(i,j) == 0 && i != GMgrid.grid.gridArray.GetLength(0))
                                     {
-                                        grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i-1,j));
-                                        grid.managerGrid.SetValue(i-1,j,0);
+                                        GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i-1,j));
+                                        GMgrid.grid.SetValue(i-1,j,0);
                                     }
                                     else
                                     {
@@ -108,27 +111,27 @@ namespace Grid_System.Scripts
                         }
                     }
                 }
-        
+
                 public void MoveLeft()
                 {
-                    for (int i = 0; i < grid.managerGrid.gridArray.GetLength(0); i++)
+                    for (int i = 0; i < GMgrid.grid.gridArray.GetLength(0); i++)
                     {
-                        for (int j = 0; j < grid.managerGrid.gridArray.GetLength(1); j++)
+                        for (int j = 0; j < GMgrid.grid.gridArray.GetLength(1); j++)
                         {
-                            if (i+1 < grid.managerGrid.gridArray.GetLength(0))
+                            if (i+1 < GMgrid.grid.gridArray.GetLength(0))
                             {
-                                if (grid.managerGrid.GetValue(i,j) == grid.managerGrid.GetValue(i+1,j))
+                                if (GMgrid.grid.GetValue(i,j) == GMgrid.grid.GetValue(i+1,j))
                                 {
-                                    grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i,j)+grid.managerGrid.GetValue(i+1,j));
-                                    grid.managerGrid.SetValue(i+1,j,0);
+                                    GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i,j)+GMgrid.grid.GetValue(i+1,j));
+                                    GMgrid.grid.SetValue(i+1,j,0);
                                     // BG.SetBG(GetValue(i,j),i,j);
                                 }
-                                else if (grid.managerGrid.GetValue(i,j) != grid.managerGrid.GetValue(i+1,j))
+                                else if (GMgrid.grid.GetValue(i,j) != GMgrid.grid.GetValue(i+1,j))
                                 {
-                                    if (grid.managerGrid.GetValue(i,j) == 0)
+                                    if (GMgrid.grid.GetValue(i,j) == 0)
                                     {
-                                        grid.managerGrid.SetValue(i,j,grid.managerGrid.GetValue(i+1,j));
-                                        grid.managerGrid.SetValue(i+1,j,0);
+                                        GMgrid.grid.SetValue(i,j,GMgrid.grid.GetValue(i+1,j));
+                                        GMgrid.grid.SetValue(i+1,j,0);
                                     }
                                     else
                                     {
