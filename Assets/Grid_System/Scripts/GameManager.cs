@@ -8,7 +8,7 @@ using Random = UnityEngine.Random;
 
 namespace Grid_System.Scripts
 {
-  public class Testing : MonoBehaviour
+  public class GameManager : MonoBehaviour
   {
       
       [SerializeField]private Grid grid;
@@ -24,7 +24,7 @@ namespace Grid_System.Scripts
       void Start()
       {
           moveManager = GetComponent<MoveManager>();
-          
+
           srArray = new SpriteRenderer[row, col];
           //新增格子陣列
           grid = new Grid(3, 3,10f,new Vector3(0,0));

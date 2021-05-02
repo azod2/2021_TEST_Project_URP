@@ -7,13 +7,13 @@ namespace Grid_System.Scripts
     public class MoveManager : MonoBehaviour
     {
   
-        [SerializeField]private Testing grid;
-        private Testing localgrid;
+        [SerializeField]private GameManager grid;
+        private GameManager localgrid;
         private int[,] gridArray;
 
         private void Start()
         {
-            grid = GetComponent<Testing>();
+            grid = GetComponent<GameManager>();
             gridArray = grid.managerGrid.gridArray;
         }
 
